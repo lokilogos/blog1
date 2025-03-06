@@ -1,0 +1,928 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prisma Cultural | Exploring the Spectrum of Human Expression</title>
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f9f9f9;
+        }
+        
+        a {
+            text-decoration: none;
+            color: #3a6ea5;
+            transition: color 0.3s ease;
+        }
+        
+        a:hover {
+            color: #c25b56;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #333;
+        }
+        
+        .logo span {
+            color: #c25b56;
+        }
+        
+        .tagline {
+            font-size: 0.9rem;
+            color: #666;
+            margin-top: 5px;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 25px;
+        }
+        
+        nav ul li a {
+            font-weight: 500;
+            padding-bottom: 5px;
+            position: relative;
+        }
+        
+        nav ul li a:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background-color: #c25b56;
+            bottom: 0;
+            left: 0;
+            transition: width 0.3s ease;
+        }
+        
+        nav ul li a:hover:after {
+            width: 100%;
+        }
+        
+        .mobile-nav-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background-color: #3a6ea5;
+            color: white;
+            padding: 60px 0;
+            margin-bottom: 40px;
+        }
+        
+        .hero-carousel {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            height: 400px;
+        }
+        
+        .carousel-item {
+            background-size: cover;
+            background-position: center;
+            height: 400px;
+            display: flex;
+            align-items: flex-end;
+            padding: 30px;
+            position: relative;
+        }
+        
+        .carousel-item::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 70%;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            z-index: 1;
+        }
+        
+        .carousel-content {
+            position: relative;
+            z-index: 2;
+            max-width: 600px;
+        }
+        
+        .category-tag {
+            display: inline-block;
+            background-color: #c25b56;
+            color: white;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .carousel-title {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+            line-height: 1.2;
+        }
+        
+        .carousel-excerpt {
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: #c25b56;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 4px;
+            font-weight: 500;
+            transition: background-color 0.3s ease;
+        }
+        
+        .btn:hover {
+            background-color: #a34b46;
+            color: white;
+        }
+        
+        /* Main Content Area */
+        .main-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+        
+        /* Category Previews */
+        .category-previews {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .category-section {
+            margin-bottom: 40px;
+        }
+        
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+        }
+        
+        .section-title {
+            font-size: 1.4rem;
+            color: #333;
+            position: relative;
+            padding-left: 15px;
+        }
+        
+        .section-title::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 5px;
+            background-color: #c25b56;
+        }
+        
+        .view-all {
+            font-size: 0.9rem;
+            color: #666;
+        }
+        
+        .article-previews {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+        
+        .article-preview {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .article-preview:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+        }
+        
+        .preview-image {
+            height: 150px;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .preview-content {
+            padding: 15px;
+        }
+        
+        .preview-title {
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            line-height: 1.3;
+        }
+        
+        .preview-excerpt {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 10px;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        
+        .preview-meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.8rem;
+            color: #999;
+        }
+        
+        /* Latest Articles */
+        .latest-articles {
+            margin-bottom: 40px;
+        }
+        
+        .timeline-layout {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .timeline-item {
+            display: flex;
+            align-items: flex-start;
+            background-color: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .timeline-date {
+            min-width: 80px;
+            font-size: 0.9rem;
+            color: #666;
+            border-right: 2px solid #eee;
+            padding-right: 15px;
+            margin-right: 15px;
+        }
+        
+        .timeline-content {
+            flex: 1;
+        }
+        
+        .timeline-title {
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+        }
+        
+        .timeline-meta {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 10px;
+            font-size: 0.8rem;
+            color: #999;
+        }
+        
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+        }
+        
+        .pagination a {
+            display: inline-block;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            background-color: white;
+            color: #333;
+            margin: 0 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .pagination a:hover, .pagination a.active {
+            background-color: #c25b56;
+            color: white;
+        }
+        
+        /* Sidebar */
+        .sidebar {
+            position: sticky;
+            top: 100px;
+        }
+        
+        .widget {
+            background-color: white;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+        
+        .widget-title {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #eee;
+        }
+        
+        .search-box {
+            position: relative;
+        }
+        
+        .search-input {
+            width: 100%;
+            padding: 10px 40px 10px 15px;
+            border: 1px solid #ddd;
+            border-radius: 25px;
+            font-size: 0.9rem;
+        }
+        
+        .search-btn {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: #666;
+            cursor: pointer;
+        }
+        
+        .popular-list {
+            list-style: none;
+        }
+        
+        .popular-list li {
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .popular-list li:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        
+        .newsletter-form input {
+            width: 100%;
+            padding: 10px 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+        }
+        
+        .newsletter-form button {
+            width: 100%;
+        }
+        
+        .tags-cloud {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .tag {
+            display: inline-block;
+            padding: 5px 10px;
+            background-color: #f0f0f0;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            color: #666;
+            transition: all 0.3s ease;
+        }
+        
+        .tag:hover {
+            background-color: #3a6ea5;
+            color: white;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 60px 0 30px;
+        }
+        
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 40px;
+            height: 2px;
+            background-color: #c25b56;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links li a {
+            color: #ccc;
+        }
+        
+        .footer-links li a:hover {
+            color: #c25b56;
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-icons a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 35px;
+            height: 35px;
+            background-color: rgba(255,255,255,0.1);
+            color: white;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+        
+        .social-icons a:hover {
+            background-color: #c25b56;
+            transform: translateY(-3px);
+        }
+        
+        .footer-newsletter input {
+            width: 100%;
+            padding: 10px;
+            background-color: rgba(255,255,255,0.1);
+            border: none;
+            color: white;
+            margin-bottom: 10px;
+            border-radius: 4px;
+        }
+        
+        .footer-newsletter button {
+            background-color: #c25b56;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        
+        .footer-newsletter button:hover {
+            background-color: #a34b46;
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.9rem;
+            color: #999;
+        }
+        
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 40px;
+            height: 40px;
+            background-color: #c25b56;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+        
+        .back-to-top.visible {
+            opacity: 1;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 1023px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .article-previews {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .category-previews {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 767px) {
+            .header-container {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            nav {
+                margin-top: 20px;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            nav ul li {
+                margin: 10px 0;
+            }
+            
+            .hero-carousel {
+                height: 350px;
+            }
+            
+            .carousel-item {
+                height: 350px;
+            }
+            
+            .carousel-title {
+                font-size: 1.8rem;
+            }
+            
+            .article-previews {
+                grid-template-columns: 1fr;
+            }
+            
+            .timeline-item {
+                flex-direction: column;
+            }
+            
+            .timeline-date {
+                border-right: none;
+                border-bottom: 2px solid #eee;
+                padding-bottom: 10px;
+                margin-bottom: 10px;
+                padding-right: 0;
+                margin-right: 0;
+            }
+            
+            .footer-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo-container">
+                <h1 class="logo">Prisma <span>Cultural</span></h1>
+                <p class="tagline">Exploring the Spectrum of Human Expression</p>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Language & Literature</a></li>
+                    <li><a href="#">Politics & Society</a></li>
+                    <li><a href="#">Arts & Media</a></li>
+                    <li><a href="#">Philosophy & Ideas</a></li>
+                    <li><a href="#">Global Perspectives</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-carousel">
+                <div class="carousel-item" style="background-image: url('/api/placeholder/1200/600');">
+                    <div class="carousel-content">
+                        <span class="category-tag">Politics & Society</span>
+                        <h2 class="carousel-title">Examining the Cultural Impacts of Political Movements</h2>
+                        <p class="carousel-excerpt">How cultural shifts catalyze political change and how political movements shape our cultural landscape across generations.</p>
+                        <a href="#" class="btn">Read More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <div class="container">
+        <div class="main-content">
+            <div class="content-column">
+                <!-- Category Previews -->
+                <section class="category-previews">
+                    <!-- Language & Literature -->
+                    <div class="category-section">
+                        <div class="section-header">
+                            <h2 class="section-title">Language & Literature</h2>
+                            <a href="#" class="view-all">View All</a>
+                        </div>
+                        <div class="article-previews">
+                            <article class="article-preview">
+                                <div class="preview-image" style="background-image: url('/api/placeholder/400/200');"></div>
+                                <div class="preview-content">
+                                    <h3 class="preview-title"><a href="#">The Evolution of Metaphor in Modern Poetry</a></h3>
+                                    <p class="preview-excerpt">Exploring how metaphorical language has transformed in response to changing cultural contexts.</p>
+                                    <div class="preview-meta">
+                                        <span>By Elena Martinez</span>
+                                        <span>5 min read</span>
+                                    </div>
+                                </div>
+                            </article>
+                            <article class="article-preview">
+                                <div class="preview-image" style="background-image: url('/api/placeholder/400/200');"></div>
+                                <div class="preview-content">
+                                    <h3 class="preview-title"><a href="#">Linguistic Landscapes: How Cities Speak</a></h3>
+                                    <p class="preview-excerpt">The visual language of urban environments and what they reveal about cultural identity.</p>
+                                    <div class="preview-meta">
+                                        <span>By James Wong</span>
+                                        <span>4 min read</span>
+                                    </div>
+                                </div>
+                            </article>
+                            <article class="article-preview">
+                                <div class="preview-image" style="background-image: url('/api/placeholder/400/200');"></div>
+                                <div class="preview-content">
+                                    <h3 class="preview-title"><a href="#">Literary Translation as Cultural Bridge</a></h3>
+                                    <p class="preview-excerpt">How translators navigate the complex terrain between languages and cultures.</p>
+                                    <div class="preview-meta">
+                                        <span>By Sophia Chen</span>
+                                        <span>7 min read</span>
+                                    </div>
+                                </div>
+                            </article>
+                        </div>
+                    </div>
+
+                    <!-- Politics & Society -->
+                    <div class="category-section">
+                        <div class="section-header">
+                            <h2 class="section-title">Politics & Society</h2>
+                            <a href="#" class="view-all">View All</a>
+                        </div>
+                        <div class="article-previews">
+                            <article class="article-preview">
+                                <div class="preview-image" style="background-image: url('/api/placeholder/400/200');"></div>
+                                <div class="preview-content">
+                                    <h3 class="preview-title"><a href="#">The Cultural Politics of Public Spaces</a></h3>
+                                    <p class="preview-excerpt">Examining how public spaces reflect and shape social dynamics and power structures.</p>
+                                    <div class="preview-meta">
+                                        <span>By Marcus Johnson</span>
+                                        <span>6 min read</span>
+                                    </div>
+                                </div>
+                            </article>
+                            <article class="article-preview">
+                                <div class="preview-image" style="background-image: url('/api/placeholder/400/200');"></div>
+                                <div class="preview-content">
+                                    <h3 class="preview-title"><a href="#">Digital Democracy: Participation in the Age of Social Media</a></h3>
+                                    <p class="preview-excerpt">How online platforms are transforming political engagement and civic discourse.</p>
+                                    <div class="preview-meta">
+                                        <span>By Aisha Rahman</span>
+                                        <span>5 min read</span>
+                                    </div>
+                                </div>
+                            </article>
+                            <article class="article-preview">
+                                <div class="preview-image" style="background-image: url('/api/placeholder/400/200');"></div>
+                                <div class="preview-content">
+                                    <h3 class="preview-title"><a href="#">Economic Policy Through a Cultural Lens</a></h3>
+                                    <p class="preview-excerpt">Understanding how cultural values influence economic systems and policy decisions.</p>
+                                    <div class="preview-meta">
+                                        <span>By Thomas Nguyen</span>
+                                        <span>8 min read</span>
+                                    </div>
+                                </div>
+                            </article>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Latest Articles -->
+                <section class="latest-articles">
+                    <div class="section-header">
+                        <h2 class="section-title">Latest Articles</h2>
+                        <a href="#" class="view-all">View All</a>
+                    </div>
+                    <div class="timeline-layout">
+                        <article class="timeline-item">
+                            <div class="timeline-date">Mar 05, 2025</div>
+                            <div class="timeline-content">
+                                <h3 class="timeline-title"><a href="#">The Revival of Analog: Cultural Resistance in a Digital World</a></h3>
+                                <div class="timeline-meta">
+                                    <span class="category-tag">Arts & Media</span>
+                                    <span>By David Kim</span>
+                                </div>
+                                <p class="timeline-excerpt">Exploring the growing counterculture movement embracing analog technologies and experiences.</p>
+                            </div>
+                        </article>
+                        <article class="timeline-item">
+                            <div class="timeline-date">Mar 04, 2025</div>
+                            <div class="timeline-content">
+                                <h3 class="timeline-title"><a href="#">Philosophical Perspectives on Artificial Intelligence</a></h3>
+                                <div class="timeline-meta">
+                                    <span class="category-tag">Philosophy & Ideas</span>
+                                    <span>By Rachel Greene</span>
+                                </div>
+                                <p class="timeline-excerpt">Examining how AI technologies challenge traditional concepts of consciousness and humanity.</p>
+                            </div>
+                        </article>
+                        <article class="timeline-item">
+                            <div class="timeline-date">Mar 03, 2025</div>
+                            <div class="timeline-content">
+                                <h3 class="timeline-title"><a href="#">Cross-Cultural Influences in Contemporary Dance</a></h3>
+                                <div class="timeline-meta">
+                                    <span class="category-tag">Arts & Media</span>
+                                    <span>By Miguel Santos</span>
+                                </div>
+                                <p class="timeline-excerpt">How global movement traditions are creating new fusion forms in modern dance expression.</p>
+                            </div>
+                        </article>
+                        <article class="timeline-item">
+                            <div class="timeline-date">Mar 02, 2025</div>
+                            <div class="timeline-content">
+                                <h3 class="timeline-title"><a href="#">The Politics of Language Preservation</a></h3>
+                                <div class="timeline-meta">
+                                    <span class="category-tag">Language & Literature</span>
+                                    <span>By Leila Okafor</span>
+                                </div>
+                                <p class="timeline-excerpt">Exploring efforts to preserve endangered languages and their cultural significance.</p>
+                            </div>
+                        </article>
+                        <article class="timeline-item">
+                            <div class="timeline-date">Mar 01, 2025</div>
+                            <div class="timeline-content">
+                                <h3 class="timeline-title"><a href="#">Global Heritage Sites at Risk: Climate Change Challenges</a></h3>
+                                <div class="timeline-meta">
+                                    <span class="category-tag">Global Perspectives</span>
+                                    <span>By Carlos Rodriguez</span>
+                                </div>
+                                <p class="timeline-excerpt">How climate change threatens cultural landmarks and international preservation efforts.</p>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="pagination">
+                        <a href="#" class="active">1</a>
+                        <a href="#">2</a>
+                        <a href="#">3</a>
+                        <a href="#">4</a>
+                        <a href="#">5</a>
+                    </div>
+                </section>
+            </div>
+
+            <!-- Sidebar -->
+            <aside class="sidebar">
+                <!-- Search Widget -->
+                <div class="widget">
+                    <h3 class="widget-title">Search</h3>
+                    <div class="search-box">
+                        <input type="text" class="search-input" placeholder="Search cultural topics...">
+                        <button class="search-btn">🔍</button>
+                    </div>
+                </div>
+
+                <!-- Popular Posts Widget -->
+                <div class="widget">
+                    <h3 class="widget-title">Popular This Week</h3>
+                    <ul class="popular-list">
+                        <li>
+                            <h4><a href="#">Cultural Appropriation vs. Appreciation in Fashion</a></h4>
+                            <span>2.4K views</span>
+                        </li>
+                        <li>
+                            <h4><a href="#">The Future of Libraries in Digital Culture</a></h4>
+                            <span>1.9K views</span>
+                        </li>
+                        <li>
+                            <h4><a href="#">Ethical Dilemmas in Documentary Filmmaking</a></h4>
+                            <span>1.7K views</span>
+                        </li>
+                        <li>
+                            <h4><a href="#">Traditional Ecological Knowledge in Modern Conservation</a></h4>
+                            <span>1.5K views</span>
+                        </li>
+                        <li>
+                            <h4><a href="#">The Evolution of Public Discourse in Social Media</a></h4>
+                            <span>1.3K views</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Newsletter Widget -->
+                <div class="widget">
+                    <h3 class="widget-title">Newsletter</h3>
+                    <p>Stay updated with our latest cultural insights and analyses.</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Your email address">
+                        <button type="submit" class="btn">Subscribe</button>
+                    </form>
+                </div>
+
+                <!-- Tags Widget -->
+                <div class="widget">
+                    <h3 class="widget-title">Popular Tags</h3>
+                    <div class="tags-cloud">
+                        <a href="#" class="tag">Cultural Identity</a>
+                        <a href="#" class="tag">Digital Media</a>
+                        <a href="#" class="tag">Philosophy</a>
+                        <a href="#" class="tag">Global Affairs</a>
+                        <a href="#" class="tag">Literature</a>
+                        <a href="#" class="tag">Social Movements</a>
+                        <a href="#" class="tag">Visual Arts</a>
+                        <a href="#" class="tag">Linguistics</a>
+                        <a href="#" class="tag">Film Studies</a>
+                        <a href="#" class="tag">Ethics</a>
+                        <a href="#" class="tag">Cultural Heritage</a>
+                        <a href="#" class="tag">Political Theory
